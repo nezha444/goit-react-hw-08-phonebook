@@ -1,30 +1,43 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { reducer } from './reducer';
-// import {
-// persistStore,
-// persistReducer,
-// FLUSH,
-// REHYDRATE,
-// PAUSE,
-// PERSIST,
-// PURGE,
-// REGISTER,
-// } from 'redux-persist';
+// import { reducer } from './reducer';
+import { authReducer } from './auth/authSlice';
+import { phonebookReducer } from './Phonebook/phonebookSlice';
 
-// import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
-// const persistedReducer = persistReducer(persistConfig, reducer);
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token', 'user'],
+};
+
+const persistedReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
-  reducer: reducer,
+  reducer: {
+    phonebook: phonebookReducer,
+    auth: persistedReducer,
+    // auth: authReducer,
+  },
 
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);

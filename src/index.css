@@ -13,3 +13,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input {
+  border: solid 1px #04f;
+  padding: 8px 20px;
+  border-radius: 999px;
+  margin: 10px;
+}
+
+input:hover,
+input:focus {
+  border: solid 1px #085;
+  outline: transparent;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  background-color: blueviolet;
+  padding: 10px;
+  width: 100px;
+  color: #fff;
+}
+
+button:hover,
+button:focus {
+  color: aqua;
+}

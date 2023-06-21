@@ -1,24 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  deleteContactsFromApi,
-  getContactsFromApi,
-  postContactsFromApi,
-} from 'components/api';
+
+import { privateApi } from '../http/api';
 
 export const getContactsThunk = createAsyncThunk('getContacts', async () => {
-  return await getContactsFromApi();
+  const responce = await privateApi.get('/contacts');
+  return responce.data;
 });
 
 export const postContactsThunk = createAsyncThunk(
   'postContacts',
-  async contact => {
-    return await postContactsFromApi(contact);
+  async newContact => {
+    const responce = await privateApi.post('/contacts', newContact);
+    return responce.data;
   }
 );
 
 export const deleteContactsThunk = createAsyncThunk(
   'deleteContacts',
   async id => {
-    return await deleteContactsFromApi(id);
+    const responce = await privateApi.delete('/contacts/' + id);
+    return responce.data;
   }
 );

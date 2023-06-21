@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getContactsFromApi = async () => {
   const data = await axios.get(
-    'https://648db06a2de8d0ea11e81ed0.mockapi.io/contacts'
+    'https://connections-api.herokuapp.com/contacts'
   );
   console.log(data.data);
   return data.data;
@@ -11,7 +11,7 @@ export const getContactsFromApi = async () => {
 
 export const postContactsFromApi = async contact => {
   const data = await axios.post(
-    'https://648db06a2de8d0ea11e81ed0.mockapi.io/contacts',
+    'https://connections-api.herokuapp.com/contacts',
     contact
   );
   console.log(data.data);
@@ -20,7 +20,7 @@ export const postContactsFromApi = async contact => {
 
 export const deleteContactsFromApi = async id => {
   const data = await axios.delete(
-    `https://648db06a2de8d0ea11e81ed0.mockapi.io/contacts/${id}`
+    `https://connections-api.herokuapp.com/contacts/${id}`
   );
   console.log(data.data);
   return data.data;
