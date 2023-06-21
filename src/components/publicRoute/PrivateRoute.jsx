@@ -6,5 +6,5 @@ import { Navigate, Outlet } from 'react-router-dom';
 export const PrivateRoute = () => {
   const isAuth = useSelector(selectIsAuth);
 
-  return isAuth ? <Outlet /> : <Navigate to={'/contacts'} />;
+  return isAuth ? <Outlet /> : <Navigate to={'/login'} />;
 };

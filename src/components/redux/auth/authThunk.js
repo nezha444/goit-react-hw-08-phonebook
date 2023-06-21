@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { publicApi, privateApi, token } from '../http/api';
+import { privateApi, token } from '../http/api';
 import { selectToken } from './authSelector';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
   async (budy, { rejectWithValue }) => {
     try {
-      const responce = await publicApi.post('/users/login', budy);
+      const responce = await privateApi.post('/users/login', budy);
       token.set(responce.data.token);
       return responce.data;
     } catch (error) {

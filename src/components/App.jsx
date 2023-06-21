@@ -43,7 +43,7 @@ export const App = () => {
         </nav>
       )}
       <Routes>
-        <Route path="/" element={<Navigate to={'/contacts'} />} />
+        <Route path="/" element={<Navigate to={'/'} />} />
 
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/contacts" element={<Contacts />} />
